@@ -10,6 +10,20 @@ namespace BillByTime.Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "ClientOrg",
+                columns: table => new
+                {
+                    ClientOrgId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    TenantManager2ClientOrgId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ClientOrg", x => x.ClientOrgId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Tenant",
                 columns: table => new
                 {
@@ -20,6 +34,50 @@ namespace BillByTime.Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tenant", x => x.TenantId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ClientManager",
+                columns: table => new
+                {
+                    ClientManagerId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    SmsNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    ClientOrgId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ClientManager", x => x.ClientManagerId);
+                    table.ForeignKey(
+                        name: "FK_ClientManager_ClientOrg_ClientOrgId",
+                        column: x => x.ClientOrgId,
+                        principalTable: "ClientOrg",
+                        principalColumn: "ClientOrgId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PurchaseOrder",
+                columns: table => new
+                {
+                    PurchaseOrderId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DateIssued = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
+                    ClientOrgId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PurchaseOrder", x => x.PurchaseOrderId);
+                    table.ForeignKey(
+                        name: "FK_PurchaseOrder_ClientOrg_ClientOrgId",
+                        column: x => x.ClientOrgId,
+                        principalTable: "ClientOrg",
+                        principalColumn: "ClientOrgId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -69,64 +127,26 @@ namespace BillByTime.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TenantManager2ClientOrg",
+                name: "ClientOrgTenantManager",
                 columns: table => new
                 {
-                    TenantManager2ClientOrgId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantManagerId = table.Column<int>(type: "int", nullable: false)
+                    ClientOrgsClientOrgId = table.Column<int>(type: "int", nullable: false),
+                    TenantManagersTenantManagerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TenantManager2ClientOrg", x => x.TenantManager2ClientOrgId);
+                    table.PrimaryKey("PK_ClientOrgTenantManager", x => new { x.ClientOrgsClientOrgId, x.TenantManagersTenantManagerId });
                     table.ForeignKey(
-                        name: "FK_TenantManager2ClientOrg_TenantManager_TenantManagerId",
-                        column: x => x.TenantManagerId,
-                        principalTable: "TenantManager",
-                        principalColumn: "TenantManagerId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ClientOrg",
-                columns: table => new
-                {
-                    ClientOrgId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    TenantManager2ClientOrgId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ClientOrg", x => x.ClientOrgId);
-                    table.ForeignKey(
-                        name: "FK_ClientOrg_TenantManager2ClientOrg_TenantManager2ClientOrgId",
-                        column: x => x.TenantManager2ClientOrgId,
-                        principalTable: "TenantManager2ClientOrg",
-                        principalColumn: "TenantManager2ClientOrgId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ClientManager",
-                columns: table => new
-                {
-                    ClientManagerId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    SmsNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    ClientOrgId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ClientManager", x => x.ClientManagerId);
-                    table.ForeignKey(
-                        name: "FK_ClientManager_ClientOrg_ClientOrgId",
-                        column: x => x.ClientOrgId,
+                        name: "FK_ClientOrgTenantManager_ClientOrg_ClientOrgsClientOrgId",
+                        column: x => x.ClientOrgsClientOrgId,
                         principalTable: "ClientOrg",
                         principalColumn: "ClientOrgId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ClientOrgTenantManager_TenantManager_TenantManagersTenantManagerId",
+                        column: x => x.TenantManagersTenantManagerId,
+                        principalTable: "TenantManager",
+                        principalColumn: "TenantManagerId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -155,27 +175,6 @@ namespace BillByTime.Persistence.Migrations
                         column: x => x.WorkerId,
                         principalTable: "Worker",
                         principalColumn: "WorkerId");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PurchaseOrder",
-                columns: table => new
-                {
-                    PurchaseOrderId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DateIssued = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Amount = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    ClientOrgId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PurchaseOrder", x => x.PurchaseOrderId);
-                    table.ForeignKey(
-                        name: "FK_PurchaseOrder_ClientOrg_ClientOrgId",
-                        column: x => x.ClientOrgId,
-                        principalTable: "ClientOrg",
-                        principalColumn: "ClientOrgId",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -249,9 +248,9 @@ namespace BillByTime.Persistence.Migrations
                 column: "ClientOrgId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClientOrg_TenantManager2ClientOrgId",
-                table: "ClientOrg",
-                column: "TenantManager2ClientOrgId");
+                name: "IX_ClientOrgTenantManager_TenantManagersTenantManagerId",
+                table: "ClientOrgTenantManager",
+                column: "TenantManagersTenantManagerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Contract_ClientOrgId",
@@ -284,11 +283,6 @@ namespace BillByTime.Persistence.Migrations
                 name: "IX_TenantManager_TenantId",
                 table: "TenantManager",
                 column: "TenantId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TenantManager2ClientOrg_TenantManagerId",
-                table: "TenantManager2ClientOrg",
-                column: "TenantManagerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Timesheet_ContractId",
@@ -324,7 +318,13 @@ namespace BillByTime.Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "ClientOrgTenantManager");
+
+            migrationBuilder.DropTable(
                 name: "TimesheetHistory");
+
+            migrationBuilder.DropTable(
+                name: "TenantManager");
 
             migrationBuilder.DropTable(
                 name: "ClientManager");
@@ -343,12 +343,6 @@ namespace BillByTime.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "ClientOrg");
-
-            migrationBuilder.DropTable(
-                name: "TenantManager2ClientOrg");
-
-            migrationBuilder.DropTable(
-                name: "TenantManager");
 
             migrationBuilder.DropTable(
                 name: "Tenant");

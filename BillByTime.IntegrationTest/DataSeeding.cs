@@ -20,11 +20,24 @@ namespace BillByTime.IntegrationTest
             using (var context = Fixture.CreateContext())
             {
                 DataSeeder.SeedData(context);
+                
                 //Assert
-                context.Tenant.Where(x=>x.Name=="BizTalkers").Count().Should().Be(1);
+                var tenant = context.Tenant.Where(x=>x.Name=="BizTalkers").Single();
+                tenant.TenantManagers.Count().Should().Be(1);
+                tenant.TenantManagers.Single().ClientOrgs.Count().Should().Be(1);
+                tenant.TenantManagers.Single().ClientOrgs.Single().ClientManagers.Count().Should().Be(1);
+                tenant.TenantManagers.Single().ClientOrgs.Single().PurchaseOrders.Count().Should().Be(1);
+                tenant.TenantManagers.Single().ClientOrgs.Single().PurchaseOrders
+                    .Single().Timesheets.Count().Should().Be(1);
+
+                tenant.Workers.Count().Should().Be(1);
+                tenant.Workers.Single().Contracts.Count().Should().Be(1);
+                tenant.Workers.Single().TimesheetHistories.Count().Should().Be(1);
+
+
 
             }
-            
+
         }
     }
 }

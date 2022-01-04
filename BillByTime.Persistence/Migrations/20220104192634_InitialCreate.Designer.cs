@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BillByTime.Persistence.Migrations
 {
     [DbContext(typeof(BillByTimeContext))]
-    [Migration("20220104161540_InitialCreate")]
+    [Migration("20220104192634_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -79,8 +79,6 @@ namespace BillByTime.Persistence.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ClientOrgId");
-
-                    b.HasIndex("TenantManager2ClientOrgId");
 
                     b.ToTable("ClientOrg");
                 });
@@ -200,24 +198,6 @@ namespace BillByTime.Persistence.Migrations
                     b.HasIndex("TenantId");
 
                     b.ToTable("TenantManager");
-                });
-
-            modelBuilder.Entity("BillByTime.Domain.TenantManager2ClientOrg", b =>
-                {
-                    b.Property<int>("TenantManager2ClientOrgId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TenantManager2ClientOrgId"), 1L, 1);
-
-                    b.Property<int>("TenantManagerId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TenantManager2ClientOrgId");
-
-                    b.HasIndex("TenantManagerId");
-
-                    b.ToTable("TenantManager2ClientOrg");
                 });
 
             modelBuilder.Entity("BillByTime.Domain.Timesheet", b =>
@@ -343,6 +323,21 @@ namespace BillByTime.Persistence.Migrations
                     b.ToTable("Worker");
                 });
 
+            modelBuilder.Entity("ClientOrgTenantManager", b =>
+                {
+                    b.Property<int>("ClientOrgsClientOrgId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TenantManagersTenantManagerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ClientOrgsClientOrgId", "TenantManagersTenantManagerId");
+
+                    b.HasIndex("TenantManagersTenantManagerId");
+
+                    b.ToTable("ClientOrgTenantManager");
+                });
+
             modelBuilder.Entity("BillByTime.Domain.ClientManager", b =>
                 {
                     b.HasOne("BillByTime.Domain.ClientOrg", null)
@@ -350,17 +345,6 @@ namespace BillByTime.Persistence.Migrations
                         .HasForeignKey("ClientOrgId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("BillByTime.Domain.ClientOrg", b =>
-                {
-                    b.HasOne("BillByTime.Domain.TenantManager2ClientOrg", "TenantManager2ClientOrg")
-                        .WithMany("ClientOrgs")
-                        .HasForeignKey("TenantManager2ClientOrgId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TenantManager2ClientOrg");
                 });
 
             modelBuilder.Entity("BillByTime.Domain.Contract", b =>
@@ -401,17 +385,6 @@ namespace BillByTime.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Tenant");
-                });
-
-            modelBuilder.Entity("BillByTime.Domain.TenantManager2ClientOrg", b =>
-                {
-                    b.HasOne("BillByTime.Domain.TenantManager", "TenantManager")
-                        .WithMany("TenantManager2ClientOrgs")
-                        .HasForeignKey("TenantManagerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TenantManager");
                 });
 
             modelBuilder.Entity("BillByTime.Domain.Timesheet", b =>
@@ -469,6 +442,21 @@ namespace BillByTime.Persistence.Migrations
                     b.Navigation("Tenant");
                 });
 
+            modelBuilder.Entity("ClientOrgTenantManager", b =>
+                {
+                    b.HasOne("BillByTime.Domain.ClientOrg", null)
+                        .WithMany()
+                        .HasForeignKey("ClientOrgsClientOrgId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BillByTime.Domain.TenantManager", null)
+                        .WithMany()
+                        .HasForeignKey("TenantManagersTenantManagerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("BillByTime.Domain.ClientManager", b =>
                 {
                     b.Navigation("TimesheetHistories");
@@ -498,16 +486,6 @@ namespace BillByTime.Persistence.Migrations
                     b.Navigation("TenantManagers");
 
                     b.Navigation("Workers");
-                });
-
-            modelBuilder.Entity("BillByTime.Domain.TenantManager", b =>
-                {
-                    b.Navigation("TenantManager2ClientOrgs");
-                });
-
-            modelBuilder.Entity("BillByTime.Domain.TenantManager2ClientOrg", b =>
-                {
-                    b.Navigation("ClientOrgs");
                 });
 
             modelBuilder.Entity("BillByTime.Domain.Timesheet", b =>

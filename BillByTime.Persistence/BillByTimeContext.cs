@@ -21,7 +21,6 @@ namespace BillByTime.Persistence
         public DbSet<PurchaseOrder>? PurchaseOrder { get; set; }
         public DbSet<Tenant> Tenant { get; set; }
         public DbSet<TenantManager>? TenantManager { get; set; }
-        public DbSet<TenantManager2ClientOrg>? TenantManager2ClientOrg { get; set; }
         public DbSet<Timesheet>? Timesheet { get; set; }
         public DbSet<TimesheetHistory>? TimesheetHistory { get; set; }
         public DbSet<Worker>? Worker { get; set; }

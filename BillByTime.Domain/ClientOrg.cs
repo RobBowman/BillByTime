@@ -15,11 +15,12 @@ namespace BillByTime.Domain
 
         //Navigation to One
         public int TenantManager2ClientOrgId { get; set; }
-        public TenantManager2ClientOrg TenantManager2ClientOrg { get; set; } = new();
 
         //Navigation to Many
         public List<PurchaseOrder> PurchaseOrders { get; set; } = new();
         public List<Contract> Contracts { get; set; } = new();
         public List<ClientManager> ClientManagers { get; set; } = new();
+        public List<TenantManager> TenantManagers { get; set; } = new();
+        public List<Timesheet> Timesheets { get; set; } = new();
     }
 }

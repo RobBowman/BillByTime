@@ -16,6 +16,7 @@ namespace BillByTime.Domain
         public Decimal Friday { get; set; }
         public Decimal Saturday { get; set; }
         public Decimal Sunday { get; set; }
+        public DateTime WeekCommencingMonday { get; set; }
 
         //Navigation to one
         public int ContractId { get; set; }

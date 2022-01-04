@@ -21,7 +21,7 @@ namespace BillByTime.Domain
         public Tenant Tenant { get; set; } = new();
 
         //Navigation to Many
-        public List<TenantManager2ClientOrg> TenantManager2ClientOrgs { get; set; } = new();
+        public List<ClientOrg> ClientOrgs { get; set; } = new();
 
     }
 }
