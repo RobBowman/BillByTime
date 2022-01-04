@@ -31,6 +31,7 @@ namespace BillByTime.Persistence.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    SmsNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     TenantId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -53,6 +54,7 @@ namespace BillByTime.Persistence.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    SmsNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     TenantId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -106,13 +108,36 @@ namespace BillByTime.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ClientManager",
+                columns: table => new
+                {
+                    ClientManagerId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    SmsNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    ClientOrgId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ClientManager", x => x.ClientManagerId);
+                    table.ForeignKey(
+                        name: "FK_ClientManager_ClientOrg_ClientOrgId",
+                        column: x => x.ClientOrgId,
+                        principalTable: "ClientOrg",
+                        principalColumn: "ClientOrgId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Contract",
                 columns: table => new
                 {
                     ContractId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UnitId = table.Column<int>(type: "int", nullable: false),
-                    UnitCharge = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    UnitCharge = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
                     WorkerId = table.Column<int>(type: "int", nullable: true),
                     ClientOrgId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -139,7 +164,7 @@ namespace BillByTime.Persistence.Migrations
                     PurchaseOrderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DateIssued = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
                     ClientOrgId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -159,13 +184,13 @@ namespace BillByTime.Persistence.Migrations
                 {
                     TimesheetId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Monday = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Tuesday = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Wednesday = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Thursday = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Friday = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Saturday = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Sunday = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Monday = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
+                    Tuesday = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
+                    Wednesday = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
+                    Thursday = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
+                    Friday = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
+                    Saturday = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
+                    Sunday = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
                     ContractId = table.Column<int>(type: "int", nullable: false),
                     PurchaseOrderId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -195,16 +220,16 @@ namespace BillByTime.Persistence.Migrations
                     StatusId = table.Column<int>(type: "int", nullable: false),
                     TimesheetId = table.Column<int>(type: "int", nullable: false),
                     WorkerId = table.Column<int>(type: "int", nullable: false),
-                    TenantManagerId = table.Column<int>(type: "int", nullable: false)
+                    ClientManagerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TimesheetHistory", x => x.TimesheetHistoryId);
                     table.ForeignKey(
-                        name: "FK_TimesheetHistory_TenantManager_TenantManagerId",
-                        column: x => x.TenantManagerId,
-                        principalTable: "TenantManager",
-                        principalColumn: "TenantManagerId",
+                        name: "FK_TimesheetHistory_ClientManager_ClientManagerId",
+                        column: x => x.ClientManagerId,
+                        principalTable: "ClientManager",
+                        principalColumn: "ClientManagerId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_TimesheetHistory_Timesheet_TimesheetId",
@@ -217,6 +242,11 @@ namespace BillByTime.Persistence.Migrations
                         principalTable: "Worker",
                         principalColumn: "WorkerId");
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClientManager_ClientOrgId",
+                table: "ClientManager",
+                column: "ClientOrgId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClientOrg_TenantManager2ClientOrgId",
@@ -239,6 +269,18 @@ namespace BillByTime.Persistence.Migrations
                 column: "ClientOrgId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Tenant_Name",
+                table: "Tenant",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TenantManager_Email",
+                table: "TenantManager",
+                column: "Email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TenantManager_TenantId",
                 table: "TenantManager",
                 column: "TenantId");
@@ -259,9 +301,9 @@ namespace BillByTime.Persistence.Migrations
                 column: "PurchaseOrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TimesheetHistory_TenantManagerId",
+                name: "IX_TimesheetHistory_ClientManagerId",
                 table: "TimesheetHistory",
-                column: "TenantManagerId");
+                column: "ClientManagerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TimesheetHistory_TimesheetId",
@@ -283,6 +325,9 @@ namespace BillByTime.Persistence.Migrations
         {
             migrationBuilder.DropTable(
                 name: "TimesheetHistory");
+
+            migrationBuilder.DropTable(
+                name: "ClientManager");
 
             migrationBuilder.DropTable(
                 name: "Timesheet");

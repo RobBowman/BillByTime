@@ -20,8 +20,8 @@ namespace BillByTime.Domain
         public int WorkerId { get; set; }
         public Worker Worker { get; set; } = new();
 
-        public int TenantManagerId { get; set; }
-        public TenantManager TenantManager { get; set; } = new();
+        public int ClientManagerId { get; set; }
+        public ClientManager ClientManager { get; set; } = new();
 
     }
 

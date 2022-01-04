@@ -22,6 +22,44 @@ namespace BillByTime.Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("BillByTime.Domain.ClientManager", b =>
+                {
+                    b.Property<int>("ClientManagerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClientManagerId"), 1L, 1);
+
+                    b.Property<int>("ClientOrgId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("SmsNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("ClientManagerId");
+
+                    b.HasIndex("ClientOrgId");
+
+                    b.ToTable("ClientManager");
+                });
+
             modelBuilder.Entity("BillByTime.Domain.ClientOrg", b =>
                 {
                     b.Property<int>("ClientOrgId")
@@ -57,7 +95,8 @@ namespace BillByTime.Persistence.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("UnitCharge")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<int>("UnitId")
                         .HasColumnType("int");
@@ -83,7 +122,8 @@ namespace BillByTime.Persistence.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PurchaseOrderId"), 1L, 1);
 
                     b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<int>("ClientOrgId")
                         .HasColumnType("int");
@@ -113,6 +153,9 @@ namespace BillByTime.Persistence.Migrations
 
                     b.HasKey("TenantId");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("Tenant");
                 });
 
@@ -139,10 +182,18 @@ namespace BillByTime.Persistence.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("SmsNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<int>("TenantId")
                         .HasColumnType("int");
 
                     b.HasKey("TenantManagerId");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.HasIndex("TenantId");
 
@@ -179,28 +230,35 @@ namespace BillByTime.Persistence.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Friday")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<decimal>("Monday")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<int?>("PurchaseOrderId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Saturday")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<decimal>("Sunday")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<decimal>("Thursday")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<decimal>("Tuesday")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<decimal>("Wednesday")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
 
                     b.HasKey("TimesheetId");
 
@@ -219,10 +277,10 @@ namespace BillByTime.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TimesheetHistoryId"), 1L, 1);
 
-                    b.Property<int>("StatusId")
+                    b.Property<int>("ClientManagerId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TenantManagerId")
+                    b.Property<int>("StatusId")
                         .HasColumnType("int");
 
                     b.Property<int>("TimesheetId")
@@ -236,7 +294,7 @@ namespace BillByTime.Persistence.Migrations
 
                     b.HasKey("TimesheetHistoryId");
 
-                    b.HasIndex("TenantManagerId");
+                    b.HasIndex("ClientManagerId");
 
                     b.HasIndex("TimesheetId");
 
@@ -268,6 +326,11 @@ namespace BillByTime.Persistence.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("SmsNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<int>("TenantId")
                         .HasColumnType("int");
 
@@ -276,6 +339,15 @@ namespace BillByTime.Persistence.Migrations
                     b.HasIndex("TenantId");
 
                     b.ToTable("Worker");
+                });
+
+            modelBuilder.Entity("BillByTime.Domain.ClientManager", b =>
+                {
+                    b.HasOne("BillByTime.Domain.ClientOrg", null)
+                        .WithMany("ClientManagers")
+                        .HasForeignKey("ClientOrgId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("BillByTime.Domain.ClientOrg", b =>
@@ -359,9 +431,9 @@ namespace BillByTime.Persistence.Migrations
 
             modelBuilder.Entity("BillByTime.Domain.TimesheetHistory", b =>
                 {
-                    b.HasOne("BillByTime.Domain.TenantManager", "TenantManager")
+                    b.HasOne("BillByTime.Domain.ClientManager", "ClientManager")
                         .WithMany("TimesheetHistories")
-                        .HasForeignKey("TenantManagerId")
+                        .HasForeignKey("ClientManagerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -377,7 +449,7 @@ namespace BillByTime.Persistence.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.Navigation("TenantManager");
+                    b.Navigation("ClientManager");
 
                     b.Navigation("Timesheet");
 
@@ -395,8 +467,15 @@ namespace BillByTime.Persistence.Migrations
                     b.Navigation("Tenant");
                 });
 
+            modelBuilder.Entity("BillByTime.Domain.ClientManager", b =>
+                {
+                    b.Navigation("TimesheetHistories");
+                });
+
             modelBuilder.Entity("BillByTime.Domain.ClientOrg", b =>
                 {
+                    b.Navigation("ClientManagers");
+
                     b.Navigation("Contracts");
 
                     b.Navigation("PurchaseOrders");
@@ -422,8 +501,6 @@ namespace BillByTime.Persistence.Migrations
             modelBuilder.Entity("BillByTime.Domain.TenantManager", b =>
                 {
                     b.Navigation("TenantManager2ClientOrgs");
-
-                    b.Navigation("TimesheetHistories");
                 });
 
             modelBuilder.Entity("BillByTime.Domain.TenantManager2ClientOrg", b =>

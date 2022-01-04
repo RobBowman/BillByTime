@@ -29,6 +29,14 @@ namespace BillByTime.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Tenant>()
+                .HasIndex(x => x.Name)
+                .IsUnique();
+
+            modelBuilder.Entity<TenantManager>()
+                .HasIndex(x => x.Email)
+                .IsUnique();
+
             modelBuilder.Entity<Worker>()
                 .HasMany(p => p.Contracts)
                 .WithOne(t => t.Worker)
@@ -43,6 +51,37 @@ namespace BillByTime.Persistence
                 .HasMany(p => p.TimesheetHistories)
                 .WithOne(t => t.Worker)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Contract>()
+                .Property(x => x.UnitCharge)
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<PurchaseOrder>()
+                .Property(x => x.Amount)
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Timesheet>()
+                .Property(x => x.Monday)
+                .HasPrecision(10, 2);
+            modelBuilder.Entity<Timesheet>()
+                .Property(x => x.Tuesday)
+                .HasPrecision(10, 2);
+            modelBuilder.Entity<Timesheet>()
+                .Property(x => x.Wednesday)
+                .HasPrecision(10, 2);
+            modelBuilder.Entity<Timesheet>()
+                .Property(x => x.Thursday)
+                .HasPrecision(10, 2);
+            modelBuilder.Entity<Timesheet>()
+                .Property(x => x.Friday)
+                .HasPrecision(10, 2);
+            modelBuilder.Entity<Timesheet>()
+                .Property(x => x.Saturday)
+                .HasPrecision(10, 2);
+            modelBuilder.Entity<Timesheet>()
+                .Property(x => x.Sunday)
+                .HasPrecision(10, 2);
+
 
         }
 

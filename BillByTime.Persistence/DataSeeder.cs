@@ -14,14 +14,24 @@ namespace BillByTime.Persistence
 
             context.Database.EnsureCreated();
 
+            var tenantManager = new Domain.TenantManager
+            {
+                FirstName = "Rob",
+                LastName = "Bowman",
+                Email = "rob@biztalkers.com",
+            };
+
             var tenant = context.Tenant.FirstOrDefault(x => x.Name == "BizTalkers");
             if (tenant == null)
             {
                 context.Tenant.Add(new Domain.Tenant
                 {
-                    Name = "BizTalkers"
-                });
+                    Name = "BizTalkers",
+                    TenantManagers = new List<Domain.TenantManager> { tenantManager }
+                }); ;
             }
+
+            
 
             context.SaveChanges();
         }

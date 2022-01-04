@@ -1,12 +1,15 @@
-﻿using BillByTime.Common;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BillByTime.Domain
 {
-    public class TenantManager
+    public class ClientManager
     {
-        public int TenantManagerId { get; set; }
+        public int ClientManagerId { get; set; }
         [MaxLength(50)]
         public string FirstName { get; set; } = "";
         [MaxLength(50)]
@@ -17,11 +20,9 @@ namespace BillByTime.Domain
         public string SmsNumber { get; set; } = "";
 
         //Navigation to One
-        public int TenantId { get; set; }
-        public Tenant Tenant { get; set; } = new();
+        public int ClientOrgId { get; set; }
 
-        //Navigation to Many
-        public List<TenantManager2ClientOrg> TenantManager2ClientOrgs { get; set; } = new();
-
+        //NavigationToMany
+        public List<TimesheetHistory>? TimesheetHistories { get; set; }
     }
 }

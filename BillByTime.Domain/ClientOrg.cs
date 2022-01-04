@@ -20,5 +20,6 @@ namespace BillByTime.Domain
         //Navigation to Many
         public List<PurchaseOrder> PurchaseOrders { get; set; } = new();
         public List<Contract> Contracts { get; set; } = new();
+        public List<ClientManager> ClientManagers { get; set; } = new();
     }
 }
