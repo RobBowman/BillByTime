@@ -12,12 +12,14 @@ namespace BillByTime.Persistence
             RelationalDatabaseCreator databaseCreator =
                         (RelationalDatabaseCreator)this.Database.GetService<IDatabaseCreator>();
             databaseCreator.EnsureCreated();
+
+            
         }
 
         public DbSet<ClientOrg>? ClientOrg { get; set; }
         public DbSet<Contract>? Contract { get; set; }
         public DbSet<PurchaseOrder>? PurchaseOrder { get; set; }
-        public DbSet<Tenant>? Tenant { get; set; }
+        public DbSet<Tenant> Tenant { get; set; }
         public DbSet<TenantManager>? TenantManager { get; set; }
         public DbSet<TenantManager2ClientOrg>? TenantManager2ClientOrg { get; set; }
         public DbSet<Timesheet>? Timesheet { get; set; }
@@ -41,6 +43,8 @@ namespace BillByTime.Persistence
                 .HasMany(p => p.TimesheetHistories)
                 .WithOne(t => t.Worker)
                 .OnDelete(DeleteBehavior.NoAction);
+
         }
+
     }
 }
