@@ -31,6 +31,16 @@ namespace BillByTime.Persistence
                 .HasMany(p => p.Contracts)
                 .WithOne(t => t.Worker)
                 .OnDelete(DeleteBehavior.NoAction);
-}
+
+            modelBuilder.Entity<Timesheet>()
+                .HasMany(p => p.TimesheetHistories)
+                .WithOne(t => t.Timesheet)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Worker>()
+                .HasMany(p => p.TimesheetHistories)
+                .WithOne(t => t.Worker)
+                .OnDelete(DeleteBehavior.NoAction);
+        }
     }
 }
