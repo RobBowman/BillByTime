@@ -12,7 +12,7 @@ namespace BillByTime.Domain
         [MaxLength(50)]
         public string LastName { get; set; } = "";
         [MaxLength(100)]
-        public EmailAddress Email { get; set; } = new EmailAddress();
+        public string Email { get; set; } = "";
 
         //Navigation to One
         public int TenantId { get; set; }

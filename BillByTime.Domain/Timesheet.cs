@@ -21,10 +21,10 @@ namespace BillByTime.Domain
         public int ContractId { get; set; }
         public Contract Contract { get; set; } = new();
 
-        public int PurchaseOrderId { get; set; }
-        public PurchaseOrder PurchaseOrder { get; set; } = new();
+        public int? PurchaseOrderId { get; set; }
+        public PurchaseOrder? PurchaseOrder { get; set; } = new();
 
-        public int TimesheetHistoryId { get; set; }
-        public TimesheetHistory TimesheetHistory { get; set; } = new();
+        //Navigation to Many
+        public List<TimesheetHistory>? TimesheetHistories { get; set; } = new();
     }
 }

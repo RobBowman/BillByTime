@@ -16,6 +16,10 @@ namespace BillByTime.Domain
         public int ClientOrgId { get; set; }
         public ClientOrg ClientOrg { get; set; } = new();
 
+        //Navigation to Many
+        public List<Timesheet>? Timesheets { get; set; } = new();
+
+
 
     }
 }
