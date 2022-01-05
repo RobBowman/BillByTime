@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="LeftToRight" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+<Node Id="IModel" Label="BillByTimeContext" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" PropertyAccessMode="PropertyAccessMode.Default" ProductVersion="6.0.1" Annotations="BaseTypeDiscoveryConvention:DerivedTypes: System.Collections.Generic.Dictionary`2[System.Type,System.Collections.Generic.List`1[Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType]]
+Relational:MaxIdentifierLength: 128
+RelationshipDiscoveryConvention:InverseNavigationCandidates: System.Collections.Generic.Dictionary`2[System.Type,System.Collections.Generic.SortedSet`1[System.Type]]
+SqlServer:ValueGenerationStrategy: IdentityColumn" Category="Model" Group="Expanded" />
+<Node Id = "ClientManager" Label="ClientManager" Name="ClientManager" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "ClientOrg" Label="ClientOrg" Name="ClientOrg" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:TableName: ClientOrg
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "ClientManager.ClientManagerId" Label="ClientManagerId" Name="ClientManagerId" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "ClientManager.TimesheetHistories" Label="TimesheetHistories (*)" Name="TimesheetHistories" Category="Navigation Collection" Type="List&lt;TimesheetHistory&gt;"  Field="" Dependent="TimesheetHistory" Principal="" Inverse="ClientManager" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "ClientManager.ClientOrgId" Label="ClientOrgId" Name="ClientOrgId" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "ClientManager.Email" Label="Email" Name="Email" Category="Property Required" Type="string" MaxLength="(100)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 100" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "ClientManager.FirstName" Label="FirstName" Name="FirstName" Category="Property Required" Type="string" MaxLength="(50)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 50" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "ClientManager.LastName" Label="LastName" Name="LastName" Category="Property Required" Type="string" MaxLength="(50)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 50" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "ClientManager.SmsNumber" Label="SmsNumber" Name="SmsNumber" Category="Property Required" Type="string" MaxLength="(20)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 20" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Contract" Label="Contract" Name="Contract" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:TableName: Contract
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "ClientOrg.ClientOrgId" Label="ClientOrgId" Name="ClientOrgId" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "ClientOrg.ClientManagers" Label="ClientManagers (*)" Name="ClientManagers" Category="Navigation Collection" Type="List&lt;ClientManager&gt;"  Field="" Dependent="ClientManager" Principal="" Inverse="" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "ClientOrg.Contracts" Label="Contracts (*)" Name="Contracts" Category="Navigation Collection" Type="List&lt;Contract&gt;"  Field="" Dependent="Contract" Principal="" Inverse="ClientOrg" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "ClientOrg.PurchaseOrders" Label="PurchaseOrders (*)" Name="PurchaseOrders" Category="Navigation Collection" Type="List&lt;PurchaseOrder&gt;"  Field="" Dependent="PurchaseOrder" Principal="" Inverse="ClientOrg" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "ClientOrg.Timesheets" Label="Timesheets (*)" Name="Timesheets" Category="Navigation Collection" Type="List&lt;Timesheet&gt;"  Field="" Dependent="Timesheet" Principal="" Inverse="" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "ClientOrg.TenantManagers" Label="TenantManagers (1)" Name="TenantManagers" Category="Navigation Property" Type="List&lt;TenantManager&gt;"  Field="" Dependent="" Principal="" Inverse="ClientOrgs" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "ClientOrg.Name" Label="Name" Name="Name" Category="Property Required" Type="string" MaxLength="(50)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 50" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "ClientOrg.TenantManager2ClientOrgId" Label="TenantManager2ClientOrgId" Name="TenantManager2ClientOrgId" Category="Property Required" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "PurchaseOrder" Label="PurchaseOrder" Name="PurchaseOrder" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:TableName: PurchaseOrder
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Contract.ContractId" Label="ContractId" Name="ContractId" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Contract.ClientOrg" Label="ClientOrg (1)" Name="ClientOrg" Category="Navigation Property" Type="ClientOrg"  Field="" Dependent="" Principal="ClientOrg" Inverse="Contracts" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Contract.Timesheets" Label="Timesheets (*)" Name="Timesheets" Category="Navigation Collection" Type="List&lt;Timesheet&gt;"  Field="" Dependent="Timesheet" Principal="" Inverse="Contract" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Contract.Worker" Label="Worker (1)" Name="Worker" Category="Navigation Property" Type="Worker"  Field="" Dependent="" Principal="Worker" Inverse="Contracts" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Contract.ClientOrgId" Label="ClientOrgId" Name="ClientOrgId" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Contract.UnitCharge" Label="UnitCharge" Name="UnitCharge" Category="Property Required" Type="decimal" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Precision: 10
+Scale: 2" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Contract.UnitId" Label="UnitId" Name="UnitId" Category="Property Required" Type="ContractUnits" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Contract.WorkerId" Label="WorkerId" Name="WorkerId" Category="Property Foreign" Type="int?" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="False" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Tenant" Label="Tenant" Name="Tenant" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:TableName: Tenant
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "PurchaseOrder.PurchaseOrderId" Label="PurchaseOrderId" Name="PurchaseOrderId" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "PurchaseOrder.ClientOrg" Label="ClientOrg (1)" Name="ClientOrg" Category="Navigation Property" Type="ClientOrg"  Field="" Dependent="" Principal="ClientOrg" Inverse="PurchaseOrders" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "PurchaseOrder.Timesheets" Label="Timesheets (*)" Name="Timesheets" Category="Navigation Collection" Type="List&lt;Timesheet&gt;"  Field="" Dependent="Timesheet" Principal="" Inverse="PurchaseOrder" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "PurchaseOrder.Amount" Label="Amount" Name="Amount" Category="Property Required" Type="decimal" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Precision: 10
+Scale: 2" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "PurchaseOrder.ClientOrgId" Label="ClientOrgId" Name="ClientOrgId" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "PurchaseOrder.DateIssued" Label="DateIssued" Name="DateIssued" Category="Property Required" Type="DateTime" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "TenantManager" Label="TenantManager" Name="TenantManager" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:TableName: TenantManager
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Tenant.TenantId" Label="TenantId" Name="TenantId" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Tenant.TenantManagers" Label="TenantManagers (*)" Name="TenantManagers" Category="Navigation Collection" Type="List&lt;TenantManager&gt;"  Field="" Dependent="TenantManager" Principal="" Inverse="Tenant" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Tenant.Workers" Label="Workers (*)" Name="Workers" Category="Navigation Collection" Type="List&lt;Worker&gt;"  Field="" Dependent="Worker" Principal="" Inverse="Tenant" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Tenant.Name" Label="Name" Name="Name" Category="Property Required" Type="string" MaxLength="(50)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 50" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Timesheet" Label="Timesheet" Name="Timesheet" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:TableName: Timesheet
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "TenantManager.TenantManagerId" Label="TenantManagerId" Name="TenantManagerId" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "TenantManager.Tenant" Label="Tenant (1)" Name="Tenant" Category="Navigation Property" Type="Tenant"  Field="" Dependent="" Principal="Tenant" Inverse="TenantManagers" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "TenantManager.ClientOrgs" Label="ClientOrgs (1)" Name="ClientOrgs" Category="Navigation Property" Type="List&lt;ClientOrg&gt;"  Field="" Dependent="" Principal="" Inverse="TenantManagers" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "TenantManager.Email" Label="Email" Name="Email" Category="Property Required" Type="string" MaxLength="(100)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 100" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "TenantManager.FirstName" Label="FirstName" Name="FirstName" Category="Property Required" Type="string" MaxLength="(50)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 50" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "TenantManager.LastName" Label="LastName" Name="LastName" Category="Property Required" Type="string" MaxLength="(50)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 50" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "TenantManager.SmsNumber" Label="SmsNumber" Name="SmsNumber" Category="Property Required" Type="string" MaxLength="(20)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 20" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "TenantManager.TenantId" Label="TenantId" Name="TenantId" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "TimesheetHistory" Label="TimesheetHistory" Name="TimesheetHistory" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:TableName: TimesheetHistory
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Timesheet.TimesheetId" Label="TimesheetId" Name="TimesheetId" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Timesheet.Contract" Label="Contract (1)" Name="Contract" Category="Navigation Property" Type="Contract"  Field="" Dependent="" Principal="Contract" Inverse="Timesheets" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Timesheet.PurchaseOrder" Label="PurchaseOrder (1)" Name="PurchaseOrder" Category="Navigation Property" Type="PurchaseOrder"  Field="" Dependent="" Principal="PurchaseOrder" Inverse="Timesheets" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Timesheet.TimesheetHistories" Label="TimesheetHistories (*)" Name="TimesheetHistories" Category="Navigation Collection" Type="List&lt;TimesheetHistory&gt;"  Field="" Dependent="TimesheetHistory" Principal="" Inverse="Timesheet" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Timesheet.ClientOrgId" Label="ClientOrgId" Name="ClientOrgId" Category="Property Foreign" Type="int?" MaxLength="None" Field="nofield" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="False" IsIndexed="True" IsShadow="True" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Timesheet.ContractId" Label="ContractId" Name="ContractId" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Timesheet.Friday" Label="Friday" Name="Friday" Category="Property Required" Type="decimal" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Precision: 10
+Scale: 2" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Timesheet.Monday" Label="Monday" Name="Monday" Category="Property Required" Type="decimal" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Precision: 10
+Scale: 2" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Timesheet.PurchaseOrderId" Label="PurchaseOrderId" Name="PurchaseOrderId" Category="Property Foreign" Type="int?" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="False" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Timesheet.Saturday" Label="Saturday" Name="Saturday" Category="Property Required" Type="decimal" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Precision: 10
+Scale: 2" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Timesheet.Sunday" Label="Sunday" Name="Sunday" Category="Property Required" Type="decimal" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Precision: 10
+Scale: 2" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Timesheet.Thursday" Label="Thursday" Name="Thursday" Category="Property Required" Type="decimal" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Precision: 10
+Scale: 2" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Timesheet.Tuesday" Label="Tuesday" Name="Tuesday" Category="Property Required" Type="decimal" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Precision: 10
+Scale: 2" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Timesheet.Wednesday" Label="Wednesday" Name="Wednesday" Category="Property Required" Type="decimal" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Precision: 10
+Scale: 2" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Timesheet.WeekCommencingMonday" Label="WeekCommencingMonday" Name="WeekCommencingMonday" Category="Property Required" Type="DateTime" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Worker" Label="Worker" Name="Worker" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:TableName: Worker
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "TimesheetHistory.TimesheetHistoryId" Label="TimesheetHistoryId" Name="TimesheetHistoryId" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "TimesheetHistory.ClientManager" Label="ClientManager (1)" Name="ClientManager" Category="Navigation Property" Type="ClientManager"  Field="" Dependent="" Principal="ClientManager" Inverse="TimesheetHistories" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "TimesheetHistory.Timesheet" Label="Timesheet (1)" Name="Timesheet" Category="Navigation Property" Type="Timesheet"  Field="" Dependent="" Principal="Timesheet" Inverse="TimesheetHistories" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "TimesheetHistory.Worker" Label="Worker (1)" Name="Worker" Category="Navigation Property" Type="Worker"  Field="" Dependent="" Principal="Worker" Inverse="TimesheetHistories" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "TimesheetHistory.ClientManagerId" Label="ClientManagerId" Name="ClientManagerId" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "TimesheetHistory.StatusId" Label="StatusId" Name="StatusId" Category="Property Required" Type="TimesheetStatus" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "TimesheetHistory.TimesheetId" Label="TimesheetId" Name="TimesheetId" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "TimesheetHistory.Timestamp" Label="Timestamp" Name="Timestamp" Category="Property Required" Type="DateTime" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "TimesheetHistory.WorkerId" Label="WorkerId" Name="WorkerId" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "ClientOrgTenantManager" Label="ClientOrgTenantManager" Name="ClientOrgTenantManager" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Worker.WorkerId" Label="WorkerId" Name="WorkerId" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Worker.Contracts" Label="Contracts (*)" Name="Contracts" Category="Navigation Collection" Type="List&lt;Contract&gt;"  Field="" Dependent="Contract" Principal="" Inverse="Worker" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Worker.Tenant" Label="Tenant (1)" Name="Tenant" Category="Navigation Property" Type="Tenant"  Field="" Dependent="" Principal="Tenant" Inverse="Workers" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Worker.TimesheetHistories" Label="TimesheetHistories (*)" Name="TimesheetHistories" Category="Navigation Collection" Type="List&lt;TimesheetHistory&gt;"  Field="" Dependent="TimesheetHistory" Principal="" Inverse="Worker" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Worker.Email" Label="Email" Name="Email" Category="Property Required" Type="string" MaxLength="(100)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 100" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Worker.FirstName" Label="FirstName" Name="FirstName" Category="Property Required" Type="string" MaxLength="(50)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 50" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Worker.LastName" Label="LastName" Name="LastName" Category="Property Required" Type="string" MaxLength="(50)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 50" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Worker.SmsNumber" Label="SmsNumber" Name="SmsNumber" Category="Property Required" Type="string" MaxLength="(20)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 20" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Worker.TenantId" Label="TenantId" Name="TenantId" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "ClientOrgTenantManager" Label="ClientOrgTenantManager" Name="ClientOrgTenantManager" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="" Category="EntityType" Group="Expanded" />
+<Node Id = "ClientOrgTenantManager.ClientOrgsClientOrgId" Label="ClientOrgsClientOrgId" Name="ClientOrgsClientOrgId" Category="Property Primary" Type="int" MaxLength="None" Field="nofield" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "ClientOrgTenantManager.TenantManagersTenantManagerId" Label="TenantManagersTenantManagerId" Name="TenantManagersTenantManagerId" Category="Property Primary" Type="int" MaxLength="None" Field="nofield" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+  </Nodes>
+  <Links>
+<Link Source = "IModel" Target="ClientManager" Category="Contains" />
+<Link Source = "IModel" Target="ClientOrg" Category="Contains" />
+<Link Source = "ClientManager" Target="ClientManager.TimesheetHistories" Category="Contains" />
+<Link Source = "ClientManager" Target="ClientManager.ClientManagerId" Category="Contains" />
+<Link Source="ClientManager" Target="ClientOrg" From="ClientManager.ClientOrgId" To="ClientOrg.ClientOrgId" Name="ClientManager -> ClientOrg" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "ClientManager" Target="ClientManager.ClientOrgId" Category="Contains" />
+<Link Source = "ClientManager" Target="ClientManager.Email" Category="Contains" />
+<Link Source = "ClientManager" Target="ClientManager.FirstName" Category="Contains" />
+<Link Source = "ClientManager" Target="ClientManager.LastName" Category="Contains" />
+<Link Source = "ClientManager" Target="ClientManager.SmsNumber" Category="Contains" />
+<Link Source = "IModel" Target="Contract" Category="Contains" />
+<Link Source = "ClientOrg" Target="ClientOrg.ClientManagers" Category="Contains" />
+<Link Source = "ClientOrg" Target="ClientOrg.Contracts" Category="Contains" />
+<Link Source = "ClientOrg" Target="ClientOrg.PurchaseOrders" Category="Contains" />
+<Link Source = "ClientOrg" Target="ClientOrg.Timesheets" Category="Contains" />
+<Link Source = "ClientOrg" Target="ClientOrg.TenantManagers" Category="Contains" />
+<Link Source = "ClientOrg" Target="ClientOrg.ClientOrgId" Category="Contains" />
+<Link Source = "ClientOrg" Target="ClientOrg.Name" Category="Contains" />
+<Link Source = "ClientOrg" Target="ClientOrg.TenantManager2ClientOrgId" Category="Contains" />
+<Link Source = "IModel" Target="PurchaseOrder" Category="Contains" />
+<Link Source = "Contract" Target="Contract.ClientOrg" Category="Contains" />
+<Link Source = "Contract" Target="Contract.Timesheets" Category="Contains" />
+<Link Source = "Contract" Target="Contract.Worker" Category="Contains" />
+<Link Source = "Contract" Target="Contract.ContractId" Category="Contains" />
+<Link Source="Contract" Target="ClientOrg" From="Contract.ClientOrgId" To="ClientOrg.ClientOrgId" Name="Contract -> ClientOrg" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="Contract" Target="Worker" From="Contract.WorkerId" To="Worker.WorkerId" Name="Contract -> Worker" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "Contract" Target="Contract.ClientOrgId" Category="Contains" />
+<Link Source = "Contract" Target="Contract.UnitCharge" Category="Contains" />
+<Link Source = "Contract" Target="Contract.UnitId" Category="Contains" />
+<Link Source = "Contract" Target="Contract.WorkerId" Category="Contains" />
+<Link Source = "IModel" Target="Tenant" Category="Contains" />
+<Link Source = "PurchaseOrder" Target="PurchaseOrder.ClientOrg" Category="Contains" />
+<Link Source = "PurchaseOrder" Target="PurchaseOrder.Timesheets" Category="Contains" />
+<Link Source = "PurchaseOrder" Target="PurchaseOrder.PurchaseOrderId" Category="Contains" />
+<Link Source="PurchaseOrder" Target="ClientOrg" From="PurchaseOrder.ClientOrgId" To="ClientOrg.ClientOrgId" Name="PurchaseOrder -> ClientOrg" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "PurchaseOrder" Target="PurchaseOrder.Amount" Category="Contains" />
+<Link Source = "PurchaseOrder" Target="PurchaseOrder.ClientOrgId" Category="Contains" />
+<Link Source = "PurchaseOrder" Target="PurchaseOrder.DateIssued" Category="Contains" />
+<Link Source = "IModel" Target="TenantManager" Category="Contains" />
+<Link Source = "Tenant" Target="Tenant.TenantManagers" Category="Contains" />
+<Link Source = "Tenant" Target="Tenant.Workers" Category="Contains" />
+<Link Source = "Tenant" Target="Tenant.TenantId" Category="Contains" />
+<Link Source = "Tenant" Target="Tenant.Name" Category="Contains" />
+<Link Source = "IModel" Target="Timesheet" Category="Contains" />
+<Link Source = "TenantManager" Target="TenantManager.Tenant" Category="Contains" />
+<Link Source = "TenantManager" Target="TenantManager.ClientOrgs" Category="Contains" />
+<Link Source = "TenantManager" Target="TenantManager.TenantManagerId" Category="Contains" />
+<Link Source="TenantManager" Target="Tenant" From="TenantManager.TenantId" To="Tenant.TenantId" Name="TenantManager -> Tenant" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "TenantManager" Target="TenantManager.Email" Category="Contains" />
+<Link Source = "TenantManager" Target="TenantManager.FirstName" Category="Contains" />
+<Link Source = "TenantManager" Target="TenantManager.LastName" Category="Contains" />
+<Link Source = "TenantManager" Target="TenantManager.SmsNumber" Category="Contains" />
+<Link Source = "TenantManager" Target="TenantManager.TenantId" Category="Contains" />
+<Link Source = "IModel" Target="TimesheetHistory" Category="Contains" />
+<Link Source = "Timesheet" Target="Timesheet.Contract" Category="Contains" />
+<Link Source = "Timesheet" Target="Timesheet.PurchaseOrder" Category="Contains" />
+<Link Source = "Timesheet" Target="Timesheet.TimesheetHistories" Category="Contains" />
+<Link Source = "Timesheet" Target="Timesheet.TimesheetId" Category="Contains" />
+<Link Source="Timesheet" Target="ClientOrg" From="Timesheet.ClientOrgId" To="ClientOrg.ClientOrgId" Name="Timesheet -> ClientOrg" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="Timesheet" Target="Contract" From="Timesheet.ContractId" To="Contract.ContractId" Name="Timesheet -> Contract" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="Timesheet" Target="PurchaseOrder" From="Timesheet.PurchaseOrderId" To="PurchaseOrder.PurchaseOrderId" Name="Timesheet -> PurchaseOrder" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "Timesheet" Target="Timesheet.ClientOrgId" Category="Contains" />
+<Link Source = "Timesheet" Target="Timesheet.ContractId" Category="Contains" />
+<Link Source = "Timesheet" Target="Timesheet.Friday" Category="Contains" />
+<Link Source = "Timesheet" Target="Timesheet.Monday" Category="Contains" />
+<Link Source = "Timesheet" Target="Timesheet.PurchaseOrderId" Category="Contains" />
+<Link Source = "Timesheet" Target="Timesheet.Saturday" Category="Contains" />
+<Link Source = "Timesheet" Target="Timesheet.Sunday" Category="Contains" />
+<Link Source = "Timesheet" Target="Timesheet.Thursday" Category="Contains" />
+<Link Source = "Timesheet" Target="Timesheet.Tuesday" Category="Contains" />
+<Link Source = "Timesheet" Target="Timesheet.Wednesday" Category="Contains" />
+<Link Source = "Timesheet" Target="Timesheet.WeekCommencingMonday" Category="Contains" />
+<Link Source = "IModel" Target="Worker" Category="Contains" />
+<Link Source = "TimesheetHistory" Target="TimesheetHistory.ClientManager" Category="Contains" />
+<Link Source = "TimesheetHistory" Target="TimesheetHistory.Timesheet" Category="Contains" />
+<Link Source = "TimesheetHistory" Target="TimesheetHistory.Worker" Category="Contains" />
+<Link Source = "TimesheetHistory" Target="TimesheetHistory.TimesheetHistoryId" Category="Contains" />
+<Link Source="TimesheetHistory" Target="ClientManager" From="TimesheetHistory.ClientManagerId" To="ClientManager.ClientManagerId" Name="TimesheetHistory -> ClientManager" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="TimesheetHistory" Target="Timesheet" From="TimesheetHistory.TimesheetId" To="Timesheet.TimesheetId" Name="TimesheetHistory -> Timesheet" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="TimesheetHistory" Target="Worker" From="TimesheetHistory.WorkerId" To="Worker.WorkerId" Name="TimesheetHistory -> Worker" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "TimesheetHistory" Target="TimesheetHistory.ClientManagerId" Category="Contains" />
+<Link Source = "TimesheetHistory" Target="TimesheetHistory.StatusId" Category="Contains" />
+<Link Source = "TimesheetHistory" Target="TimesheetHistory.TimesheetId" Category="Contains" />
+<Link Source = "TimesheetHistory" Target="TimesheetHistory.Timestamp" Category="Contains" />
+<Link Source = "TimesheetHistory" Target="TimesheetHistory.WorkerId" Category="Contains" />
+<Link Source = "IModel" Target="ClientOrgTenantManager" Category="Contains" />
+<Link Source = "Worker" Target="Worker.Contracts" Category="Contains" />
+<Link Source = "Worker" Target="Worker.Tenant" Category="Contains" />
+<Link Source = "Worker" Target="Worker.TimesheetHistories" Category="Contains" />
+<Link Source = "Worker" Target="Worker.WorkerId" Category="Contains" />
+<Link Source="Worker" Target="Tenant" From="Worker.TenantId" To="Tenant.TenantId" Name="Worker -> Tenant" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "Worker" Target="Worker.Email" Category="Contains" />
+<Link Source = "Worker" Target="Worker.FirstName" Category="Contains" />
+<Link Source = "Worker" Target="Worker.LastName" Category="Contains" />
+<Link Source = "Worker" Target="Worker.SmsNumber" Category="Contains" />
+<Link Source = "Worker" Target="Worker.TenantId" Category="Contains" />
+<Link Source = "IModel" Target="ClientOrgTenantManager" Category="Contains" />
+<Link Source = "ClientOrgTenantManager" Target="ClientOrgTenantManager.ClientOrgsClientOrgId" Category="Contains" />
+<Link Source="ClientOrgTenantManager" Target="ClientOrg" From="ClientOrgTenantManager.ClientOrgsClientOrgId" To="ClientOrg.ClientOrgId" Name="ClientOrgTenantManager -> ClientOrg" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="ClientOrgTenantManager" Target="TenantManager" From="ClientOrgTenantManager.TenantManagersTenantManagerId" To="TenantManager.TenantManagerId" Name="ClientOrgTenantManager -> TenantManager" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "ClientOrgTenantManager" Target="ClientOrgTenantManager.TenantManagersTenantManagerId" Category="Contains" />
+  </Links>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="EntityType" ValueLabel="True">
+      <Condition Expression="HasCategory('EntityType')" />
+      <Setter Property="Background" Value="#FFC0C0C0" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Primary" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Primary')" />
+      <Setter Property="Background" Value="#FF008000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Optional" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Optional')" />
+      <Setter Property="Background" Value="#FF808040" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Foreign" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Foreign')" />
+      <Setter Property="Background" Value="#FF8080FF" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Required" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Required')" />
+      <Setter Property="Background" Value="#FFC0A000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Navigation Property" ValueLabel="True">
+      <Condition Expression="HasCategory('Navigation Property')" />
+      <Setter Property="Background" Value="#FF990000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Navigation Collection" ValueLabel="True">
+      <Condition Expression="HasCategory('Navigation Collection')" />
+      <Setter Property="Background" Value="#FFFF3232" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Model" ValueLabel="True">
+      <Condition Expression="HasCategory('Model')" />
+      <Setter Property="Background" Value="#FFFFFFFF" />
+    </Style>
+  </Styles>
+  <Properties>
+    <Property Id="Name" Group="Model Properties" DataType="System.String" />
+    <Property Id="Field"  Description="Backing field" Group="Model Properties" DataType="System.String" />
+    <Property Id="Type"  Description="CLR data type" Group="Model Properties" DataType="System.String" />
+    <Property Id="To" Description="Source property" Group="Model Properties" DataType="System.String" />
+    <Property Id="From" Description="Target property" Group="Model Properties" DataType="System.String" />
+    <Property Id="Dependent" Description="Dependent entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="Inverse" Description="Inverse entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="Principal" Description="Principal entity" Group="Model Properties" DataType="System.String" />    
+    <Property Id="Annotations" Description="Annotations" Group="Model Properties" DataType="System.String" />
+    <Property Id="BaseClass"  Description="Base class" Group="Model Properties" DataType="System.String" />
+    <Property Id="ChangeTrackingStrategy" Description="Change tracking strategy" Group="Model Properties" DataType="System.String" />
+    <Property Id="IsUnique" Group="Model Properties" DataType="System.Boolean" />
+    <Property Id="IsAbstract" Group="Model Properties" DataType="System.Boolean" />
+    <Property Id="ProductVersion" Label="Product Version" Description="EF Core product version" Group="Model Properties" DataType="System.String" />
+    <Property Id="IsIndexed" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsRequired" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsPrimaryKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsForeignKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsShadow" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsAlternateKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsConcurrencyToken" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsIndexed" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsUnicode" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="ValueGenerated" Group="Property Flags" DataType="System.String" />
+    <Property Id="BeforeSaveBehavior" Group="Property Flags" DataType="System.String" />
+    <Property Id="AfterSaveBehavior" Group="Property Flags" DataType="System.String" />
+    <Property Id="PropertyAccessMode" Group="Property Flags" DataType="System.String" />
+  </Properties>
+</DirectedGraph>

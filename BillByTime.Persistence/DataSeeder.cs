@@ -44,7 +44,7 @@ namespace BillByTime.Persistence
                 FirstName = "Paul",
                 LastName = "Arndel",
                 Email = "p.arndel@brc.com",
-                SmsNumber = "07779189360",
+                SmsNumber = "867428764",
                 //TimesheetHistories = new List<TimesheetHistory> { timesheetHistory }
             };
 
